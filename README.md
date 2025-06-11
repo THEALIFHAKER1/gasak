@@ -1,12 +1,32 @@
-# Create T3 App
+# GASAK Esport Management App
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+A modern esports team management application built with Next.js 15, featuring role-based access control and comprehensive user management.
 
-## What's next? How do I make an app with this?
+## 🚀 Quick Start
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+1. **Setup Environment**: Copy `.env.example` to `.env` and configure your database
+2. **Install Dependencies**: `npm install`
+3. **Setup Database**: `npm run db:push`
+4. **Seed Users**: `npm run db:seed-all`
+5. **Start Development**: `npm run dev`
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+## 📚 Documentation
+
+Complete documentation is available in the [`/docs`](./docs/) folder:
+
+- **[Setup Guide](./docs/RBAC_README.md)** - Authentication and RBAC setup
+- **[Developer Guide](./docs/ROLE_CHECKING_GUIDE.md)** - Role checking implementation
+- **[Documentation Index](./docs/README.md)** - Complete documentation overview
+
+## 🔐 Test Accounts
+
+| Role   | Email            | Password  |
+| ------ | ---------------- | --------- |
+| Admin  | admin@gasak.com  | admin123  |
+| Leader | leader@gasak.com | leader123 |
+| Member | member@gasak.com | member123 |
+
+## 🛠️ Tech Stack
 
 - [Next.js](https://nextjs.org)
 - [NextAuth.js](https://next-auth.js.org)
