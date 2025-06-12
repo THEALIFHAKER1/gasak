@@ -20,7 +20,34 @@ export async function middleware(request: NextRequest) {
 
   const userRole = token.role as string;
 
-  // Check role-based access
+  // Check role-based access for dashboard routes
+  if (pathname.startsWith("/dashboard/admin")) {
+    if (userRole !== "admin") {
+      // Redirect to appropriate dashboard based on role
+      if (userRole === "leader") {
+        return NextResponse.redirect(new URL("/dashboard/leader", request.url));
+      } else if (userRole === "member") {
+        return NextResponse.redirect(new URL("/dashboard/member", request.url));
+      } else {
+        return NextResponse.redirect(new URL("/auth/signin", request.url));
+      }
+    }
+  } else if (pathname.startsWith("/dashboard/leader")) {
+    if (!["admin", "leader"].includes(userRole)) {
+      // Redirect to appropriate dashboard based on role
+      if (userRole === "member") {
+        return NextResponse.redirect(new URL("/dashboard/member", request.url));
+      } else {
+        return NextResponse.redirect(new URL("/auth/signin", request.url));
+      }
+    }
+  } else if (pathname.startsWith("/dashboard/member")) {
+    if (!["admin", "leader", "member"].includes(userRole)) {
+      return NextResponse.redirect(new URL("/auth/signin", request.url));
+    }
+  }
+
+  // Legacy role-based access (keeping for backward compatibility)
   if (pathname.startsWith("/admin/")) {
     if (userRole !== "admin") {
       return NextResponse.redirect(new URL("/", request.url));

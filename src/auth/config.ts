@@ -52,7 +52,21 @@ export const authConfig = {
   session: {
     strategy: "jwt",
   },
+  pages: {
+    signIn: "/auth/signin",
+  },
   callbacks: {
+    async redirect({ url, baseUrl }) {
+      // If redirecting after sign in, go to dashboard
+      if (url === baseUrl || url === `${baseUrl}/`) {
+        return `${baseUrl}/dashboard`;
+      }
+      // Allow relative callback URLs
+      if (url.startsWith("/")) return `${baseUrl}${url}`;
+      // Allow callback URLs on the same origin
+      if (new URL(url).origin === baseUrl) return url;
+      return baseUrl;
+    },
     async jwt({ token, user }) {
       if (user && "role" in user) {
         token.role = user.role;
@@ -66,8 +80,5 @@ export const authConfig = {
       }
       return session;
     },
-  },
-  pages: {
-    signIn: "/auth/signin",
   },
 } satisfies NextAuthConfig;

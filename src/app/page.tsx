@@ -65,7 +65,7 @@ export default function HomePage() {
               <div className="mx-auto grid max-w-4xl grid-cols-1 gap-6 md:grid-cols-3">
                 {session.user.role === "admin" && (
                   <Link
-                    href="/admin"
+                    href="/dashboard/admin"
                     className="rounded-lg border border-red-300 bg-red-100 p-6 text-center transition-colors hover:bg-red-200"
                   >
                     <h3 className="mb-2 text-lg font-semibold text-red-800">
@@ -79,7 +79,7 @@ export default function HomePage() {
 
                 {["admin", "leader"].includes(session.user.role as string) && (
                   <Link
-                    href="/leader"
+                    href="/dashboard/leader"
                     className="rounded-lg border border-blue-300 bg-blue-100 p-6 text-center transition-colors hover:bg-blue-200"
                   >
                     <h3 className="mb-2 text-lg font-semibold text-blue-800">
@@ -95,7 +95,7 @@ export default function HomePage() {
                   session.user.role as string,
                 ) && (
                   <Link
-                    href="/member"
+                    href="/dashboard/member"
                     className="rounded-lg border border-green-300 bg-green-100 p-6 text-center transition-colors hover:bg-green-200"
                   >
                     <h3 className="mb-2 text-lg font-semibold text-green-800">

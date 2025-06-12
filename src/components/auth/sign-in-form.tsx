@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { signIn, getSession } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 
@@ -27,26 +27,8 @@ export function SignInForm() {
       if (result?.error) {
         setError("Invalid email or password");
       } else {
-        // Get the updated session to check user role
-        const session = await getSession();
-        if (session?.user?.role) {
-          // Redirect based on role
-          switch (session.user.role) {
-            case "admin":
-              router.push("/admin");
-              break;
-            case "leader":
-              router.push("/leader");
-              break;
-            case "member":
-              router.push("/member");
-              break;
-            default:
-              router.push("/");
-          }
-        } else {
-          router.push("/");
-        }
+        // Redirect to dashboard - it will handle role-based redirection
+        router.push("/dashboard");
       }
     } catch {
       setError("An error occurred. Please try again.");
