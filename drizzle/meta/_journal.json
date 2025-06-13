@@ -36,6 +36,13 @@
       "when": 1749773151462,
       "tag": "0004_overjoyed_mephisto",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1749783064203,
+      "tag": "0005_big_giant_man",
+      "breakpoints": true
     }
   ]
 }
