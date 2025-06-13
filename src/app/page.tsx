@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 
 // Static squad data
 const squadData = [
@@ -102,30 +103,41 @@ const latestNews = [
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-gray-50">
-      <header className="bg-white shadow">
+    <div className="min-h-dvh bg-gray-900">
+      <header className="bg-gray-800 shadow-lg border-b border-yellow-500/20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {" "}
           <div className="flex h-16 items-center justify-between">
-            <h1 className="text-xl font-semibold text-gray-900">
-              GASAK Esport Management
-            </h1>
+            <div className="flex items-center space-x-3">
+              <div className="w-12 h-12 rounded-lg overflow-hidden bg-gray-700">
+                <Image 
+                  src="/logo.jpg" 
+                  alt="GASAK MY Logo" 
+                  width={48} 
+                  height={48}
+                  className="w-full h-full object-contain"
+                />
+              </div>
+              <h1 className="text-xl font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
+                GASAK MY Esports
+              </h1>
+            </div>
             <div className="flex items-center space-x-6">
               <Link
                 href="#tournaments"
-                className="text-gray-700 hover:text-gray-900"
+                className="text-gray-300 hover:text-yellow-400 transition-colors"
               >
                 Tournaments
               </Link>
-              <Link href="#teams" className="text-gray-700 hover:text-gray-900">
+              <Link href="#teams" className="text-gray-300 hover:text-yellow-400 transition-colors">
                 Teams
               </Link>
-              <Link href="#news" className="text-gray-700 hover:text-gray-900">
+              <Link href="#news" className="text-gray-300 hover:text-yellow-400 transition-colors">
                 News
               </Link>
               <Link
                 href="/auth/signin"
-                className="rounded-md bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700"
+                className="rounded-md bg-gradient-to-r from-yellow-500 to-orange-500 px-4 py-2 text-sm font-medium text-gray-900 hover:from-yellow-400 hover:to-orange-400 transition-all duration-200"
               >
                 Login
               </Link>
@@ -137,16 +149,16 @@ export default function HomePage() {
       <main className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
         <div className="px-4 py-6 sm:px-0">
           <div className="text-center">
-            <h1 className="mb-8 text-4xl font-bold text-gray-900">
-              Welcome to GASAK Esport Management
+            <h1 className="mb-8 text-4xl font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
+              Welcome to GASAK MY Esports
             </h1>
-            <p className="mb-8 text-xl text-gray-600">
+            <p className="mb-8 text-xl text-gray-300">
               Professional esports team management platform
             </p>
 
             {/* Squad Carousel - Continuous Rolling */}
             <div className="mb-12">
-              <h2 className="mb-6 text-2xl font-semibold text-gray-800">
+              <h2 className="mb-6 text-2xl font-semibold text-yellow-400">
                 Our Elite Squads
               </h2>
               <div className="relative mx-auto max-w-6xl overflow-hidden py-4">
@@ -196,10 +208,10 @@ export default function HomePage() {
             {/* Tournament Section */}
             <div className="mb-16">
               <div className="mb-8 text-center">
-                <h2 className="mb-4 text-3xl font-bold text-gray-900">
+                <h2 className="mb-4 text-3xl font-bold text-yellow-400">
                   Live Tournaments
                 </h2>
-                <p className="text-lg text-gray-600">
+                <p className="text-lg text-gray-300">
                   Compete for glory and prizes
                 </p>
               </div>
@@ -207,32 +219,32 @@ export default function HomePage() {
                 {tournaments.map((tournament, index) => (
                   <div
                     key={index}
-                    className="overflow-hidden rounded-xl bg-white shadow-lg transition-shadow hover:shadow-xl"
+                    className="overflow-hidden rounded-xl bg-gray-800 shadow-lg transition-shadow hover:shadow-xl border border-yellow-500/20"
                   >
                     <div className="p-6">
                       <div className="mb-4 flex items-center justify-between">
                         <span
                           className={`rounded-full px-3 py-1 text-sm font-medium ${
                             tournament.status === "Live"
-                              ? "bg-red-100 text-red-800"
+                              ? "bg-red-500/20 text-red-400 border border-red-500/30"
                               : tournament.status === "Upcoming"
-                                ? "bg-blue-100 text-blue-800"
-                                : "bg-green-100 text-green-800"
+                                ? "bg-blue-500/20 text-blue-400 border border-blue-500/30"
+                                : "bg-green-500/20 text-green-400 border border-green-500/30"
                           }`}
                         >
                           {tournament.status}
                         </span>
                         <span className="text-2xl">🏆</span>
                       </div>
-                      <h3 className="mb-2 text-xl font-bold text-gray-900">
+                      <h3 className="mb-2 text-xl font-bold text-white">
                         {tournament.name}
                       </h3>
-                      <p className="mb-4 text-gray-600">{tournament.date}</p>
+                      <p className="mb-4 text-gray-400">{tournament.date}</p>
                       <div className="flex items-center justify-between">
-                        <span className="text-2xl font-bold text-indigo-600">
+                        <span className="text-2xl font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
                           {tournament.prize}
                         </span>
-                        <button className="rounded-lg bg-indigo-600 px-4 py-2 text-white transition-colors hover:bg-indigo-700">
+                        <button className="rounded-lg bg-gradient-to-r from-yellow-500 to-orange-500 px-4 py-2 text-gray-900 font-medium transition-all hover:from-yellow-400 hover:to-orange-400">
                           View Details
                         </button>
                       </div>
@@ -244,18 +256,18 @@ export default function HomePage() {
 
             {/* Stats Section */}
             <div className="mb-16">
-              <div className="rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 p-8 text-white">
-                <h2 className="mb-8 text-center text-3xl font-bold">
-                  GASAK by the Numbers
+              <div className="rounded-2xl bg-gradient-to-r from-gray-800 to-gray-700 p-8 text-white border border-yellow-500/30">
+                <h2 className="mb-8 text-center text-3xl font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
+                  GASAK MY by the Numbers
                 </h2>
                 <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
                   {teamStats.map((stat, index) => (
                     <div key={index} className="text-center">
                       <div className="mb-2 text-4xl">{stat.icon}</div>
-                      <div className="mb-1 text-3xl font-bold">
+                      <div className="mb-1 text-3xl font-bold text-yellow-400">
                         {stat.value}
                       </div>
-                      <div className="text-indigo-200">{stat.label}</div>
+                      <div className="text-gray-300">{stat.label}</div>
                     </div>
                   ))}
                 </div>
@@ -265,30 +277,30 @@ export default function HomePage() {
             {/* News Section */}
             <div className="mb-16">
               <div className="mb-8 text-center">
-                <h2 className="mb-4 text-3xl font-bold text-gray-900">
+                <h2 className="mb-4 text-3xl font-bold text-yellow-400">
                   Latest News
                 </h2>
-                <p className="text-lg text-gray-600">
-                  Stay updated with GASAK esports
+                <p className="text-lg text-gray-300">
+                  Stay updated with GASAK MY esports
                 </p>
               </div>
               <div className="grid gap-6 md:grid-cols-3">
                 {latestNews.map((news, index) => (
                   <article
                     key={index}
-                    className="overflow-hidden rounded-xl bg-white shadow-lg transition-shadow hover:shadow-xl"
+                    className="overflow-hidden rounded-xl bg-gray-800 shadow-lg transition-shadow hover:shadow-xl border border-yellow-500/20"
                   >
                     <div className="p-6">
                       <div className="mb-4 text-4xl">{news.image}</div>
-                      <h3 className="mb-3 text-xl font-bold text-gray-900">
+                      <h3 className="mb-3 text-xl font-bold text-white">
                         {news.title}
                       </h3>
-                      <p className="mb-4 text-gray-600">{news.summary}</p>
+                      <p className="mb-4 text-gray-300">{news.summary}</p>
                       <div className="flex items-center justify-between">
-                        <span className="text-sm text-gray-500">
+                        <span className="text-sm text-gray-400">
                           {news.date}
                         </span>
-                        <button className="font-medium text-indigo-600 hover:text-indigo-800">
+                        <button className="font-medium text-yellow-400 hover:text-yellow-300 transition-colors">
                           Read More →
                         </button>
                       </div>
@@ -300,18 +312,18 @@ export default function HomePage() {
 
             {/* CTA Section */}
             <div className="mb-16">
-              <div className="rounded-2xl bg-gray-900 p-8 text-center text-white">
-                <h2 className="mb-4 text-3xl font-bold">
+              <div className="rounded-2xl bg-gradient-to-r from-gray-800 to-gray-700 p-8 text-center text-white border border-yellow-500/30">
+                <h2 className="mb-4 text-3xl font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
                   Ready to Join the Elite?
                 </h2>
                 <p className="mb-6 text-xl text-gray-300">
-                  Take your gaming to the next level with GASAK esports
+                  Take your gaming to the next level with GASAK MY esports
                 </p>
                 <div className="flex flex-col justify-center gap-4 sm:flex-row">
-                  <button className="rounded-lg bg-indigo-600 px-8 py-3 font-medium transition-colors hover:bg-indigo-700">
+                  <button className="rounded-lg bg-gradient-to-r from-yellow-500 to-orange-500 px-8 py-3 font-medium text-gray-900 transition-all hover:from-yellow-400 hover:to-orange-400">
                     Join Our Team
                   </button>
-                  <button className="rounded-lg border border-gray-600 px-8 py-3 font-medium transition-colors hover:border-gray-400">
+                  <button className="rounded-lg border border-yellow-500/50 px-8 py-3 font-medium text-yellow-400 transition-colors hover:border-yellow-400 hover:text-yellow-300">
                     Watch Matches
                   </button>
                 </div>
