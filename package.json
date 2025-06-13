@@ -14,6 +14,7 @@
     "db:seed-leader": "tsx scripts/seed-leader.ts",
     "db:seed-member": "tsx scripts/seed-member.ts",
     "db:seed-all": "tsx scripts/seed-all-users.ts",
+    "db:seed-squads": "tsx scripts/seed-squads.ts",
     "db:fix-role-enum": "tsx scripts/fix-role-enum.ts",
     "dev": "next dev --turbo",
     "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,mdx}\" --cache",

@@ -71,6 +71,11 @@ export default function AppSidebar() {
           url: "/dashboard/admin/users",
           icon: IconUsers,
         },
+        {
+          title: "Squad Management",
+          url: "/dashboard/admin/squads",
+          icon: IconShield,
+        },
         // {
         //   title: "Tournament Control",
         //   url: "/dashboard/admin/tournaments",
@@ -96,6 +101,11 @@ export default function AppSidebar() {
           title: "Kanban Board",
           url: "/dashboard/leader/kanban",
           icon: IconColumns,
+        },
+        {
+          title: "My Squad",
+          url: "/dashboard/leader/squads",
+          icon: IconUsers,
         },
         // {
         //   title: "Team Members",
@@ -127,6 +137,11 @@ export default function AppSidebar() {
           title: "Kanban Board",
           url: "/dashboard/member/kanban",
           icon: IconColumns,
+        },
+        {
+          title: "Squad Info",
+          url: "/dashboard/member/squads",
+          icon: IconShield,
         },
         // {
         //   title: "Training Schedule",

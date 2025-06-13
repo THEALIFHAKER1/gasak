@@ -104,40 +104,46 @@ const latestNews = [
 export default function HomePage() {
   return (
     <div className="min-h-dvh bg-gray-900">
-      <header className="bg-gray-800 shadow-lg border-b border-yellow-500/20">
+      <header className="border-b border-yellow-500/20 bg-gray-800 shadow-lg">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {" "}
           <div className="flex h-16 items-center justify-between">
             <div className="flex items-center space-x-3">
-              <div className="w-12 h-12 rounded-lg overflow-hidden bg-gray-700">
-                <Image 
-                  src="/logo.jpg" 
-                  alt="GASAK MY Logo" 
-                  width={48} 
+              <div className="h-12 w-12 overflow-hidden rounded-lg bg-gray-700">
+                <Image
+                  src="/logo.jpg"
+                  alt="GASAK MY Logo"
+                  width={48}
                   height={48}
-                  className="w-full h-full object-contain"
+                  className="h-full w-full object-contain"
                 />
               </div>
-              <h1 className="text-xl font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
+              <h1 className="bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-xl font-bold text-transparent">
                 GASAK MY Esports
               </h1>
             </div>
             <div className="flex items-center space-x-6">
               <Link
                 href="#tournaments"
-                className="text-gray-300 hover:text-yellow-400 transition-colors"
+                className="text-gray-300 transition-colors hover:text-yellow-400"
               >
                 Tournaments
               </Link>
-              <Link href="#teams" className="text-gray-300 hover:text-yellow-400 transition-colors">
+              <Link
+                href="#teams"
+                className="text-gray-300 transition-colors hover:text-yellow-400"
+              >
                 Teams
               </Link>
-              <Link href="#news" className="text-gray-300 hover:text-yellow-400 transition-colors">
+              <Link
+                href="#news"
+                className="text-gray-300 transition-colors hover:text-yellow-400"
+              >
                 News
               </Link>
               <Link
                 href="/login"
-                className="rounded-md bg-gradient-to-r from-yellow-500 to-orange-500 px-4 py-2 text-sm font-medium text-gray-900 hover:from-yellow-400 hover:to-orange-400 transition-all duration-200"
+                className="rounded-md bg-gradient-to-r from-yellow-500 to-orange-500 px-4 py-2 text-sm font-medium text-gray-900 transition-all duration-200 hover:from-yellow-400 hover:to-orange-400"
               >
                 Login
               </Link>
@@ -149,7 +155,7 @@ export default function HomePage() {
       <main className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
         <div className="px-4 py-6 sm:px-0">
           <div className="text-center">
-            <h1 className="mb-8 text-4xl font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
+            <h1 className="mb-8 bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-4xl font-bold text-transparent">
               Welcome to GASAK MY Esports
             </h1>
             <p className="mb-8 text-xl text-gray-300">
@@ -219,17 +225,17 @@ export default function HomePage() {
                 {tournaments.map((tournament, index) => (
                   <div
                     key={index}
-                    className="overflow-hidden rounded-xl bg-gray-800 shadow-lg transition-shadow hover:shadow-xl border border-yellow-500/20"
+                    className="overflow-hidden rounded-xl border border-yellow-500/20 bg-gray-800 shadow-lg transition-shadow hover:shadow-xl"
                   >
                     <div className="p-6">
                       <div className="mb-4 flex items-center justify-between">
                         <span
                           className={`rounded-full px-3 py-1 text-sm font-medium ${
                             tournament.status === "Live"
-                              ? "bg-red-500/20 text-red-400 border border-red-500/30"
+                              ? "border border-red-500/30 bg-red-500/20 text-red-400"
                               : tournament.status === "Upcoming"
-                                ? "bg-blue-500/20 text-blue-400 border border-blue-500/30"
-                                : "bg-green-500/20 text-green-400 border border-green-500/30"
+                                ? "border border-blue-500/30 bg-blue-500/20 text-blue-400"
+                                : "border border-green-500/30 bg-green-500/20 text-green-400"
                           }`}
                         >
                           {tournament.status}
@@ -241,10 +247,10 @@ export default function HomePage() {
                       </h3>
                       <p className="mb-4 text-gray-400">{tournament.date}</p>
                       <div className="flex items-center justify-between">
-                        <span className="text-2xl font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
+                        <span className="bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-2xl font-bold text-transparent">
                           {tournament.prize}
                         </span>
-                        <button className="rounded-lg bg-gradient-to-r from-yellow-500 to-orange-500 px-4 py-2 text-gray-900 font-medium transition-all hover:from-yellow-400 hover:to-orange-400">
+                        <button className="rounded-lg bg-gradient-to-r from-yellow-500 to-orange-500 px-4 py-2 font-medium text-gray-900 transition-all hover:from-yellow-400 hover:to-orange-400">
                           View Details
                         </button>
                       </div>
@@ -256,8 +262,8 @@ export default function HomePage() {
 
             {/* Stats Section */}
             <div className="mb-16">
-              <div className="rounded-2xl bg-gradient-to-r from-gray-800 to-gray-700 p-8 text-white border border-yellow-500/30">
-                <h2 className="mb-8 text-center text-3xl font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
+              <div className="rounded-2xl border border-yellow-500/30 bg-gradient-to-r from-gray-800 to-gray-700 p-8 text-white">
+                <h2 className="mb-8 bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-center text-3xl font-bold text-transparent">
                   GASAK MY by the Numbers
                 </h2>
                 <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
@@ -288,7 +294,7 @@ export default function HomePage() {
                 {latestNews.map((news, index) => (
                   <article
                     key={index}
-                    className="overflow-hidden rounded-xl bg-gray-800 shadow-lg transition-shadow hover:shadow-xl border border-yellow-500/20"
+                    className="overflow-hidden rounded-xl border border-yellow-500/20 bg-gray-800 shadow-lg transition-shadow hover:shadow-xl"
                   >
                     <div className="p-6">
                       <div className="mb-4 text-4xl">{news.image}</div>
@@ -300,7 +306,7 @@ export default function HomePage() {
                         <span className="text-sm text-gray-400">
                           {news.date}
                         </span>
-                        <button className="font-medium text-yellow-400 hover:text-yellow-300 transition-colors">
+                        <button className="font-medium text-yellow-400 transition-colors hover:text-yellow-300">
                           Read More →
                         </button>
                       </div>
@@ -312,8 +318,8 @@ export default function HomePage() {
 
             {/* CTA Section */}
             <div className="mb-16">
-              <div className="rounded-2xl bg-gradient-to-r from-gray-800 to-gray-700 p-8 text-center text-white border border-yellow-500/30">
-                <h2 className="mb-4 text-3xl font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
+              <div className="rounded-2xl border border-yellow-500/30 bg-gradient-to-r from-gray-800 to-gray-700 p-8 text-center text-white">
+                <h2 className="mb-4 bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-3xl font-bold text-transparent">
                   Ready to Join the Elite?
                 </h2>
                 <p className="mb-6 text-xl text-gray-300">

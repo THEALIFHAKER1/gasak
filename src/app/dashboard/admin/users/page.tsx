@@ -52,6 +52,8 @@ interface User {
   email: string;
   role: "admin" | "leader" | "member";
   ign?: string | null;
+  squadName?: string | null;
+  squadId?: string | null;
 }
 
 export default function UsersPage() {
@@ -257,6 +259,7 @@ export default function UsersPage() {
                   <th className="p-4 text-left font-medium">Email</th>
                   <th className="p-4 text-left font-medium">IGN</th>
                   <th className="p-4 text-left font-medium">Role</th>
+                  <th className="p-4 text-left font-medium">Squad</th>
                   <th className="p-4 text-left font-medium">Actions</th>
                 </tr>
               </thead>
@@ -275,6 +278,17 @@ export default function UsersPage() {
                       >
                         {user.role}
                       </Badge>
+                    </td>
+                    <td className="p-4">
+                      {user.squadName ? (
+                        <Badge variant="secondary" className="text-xs">
+                          {user.squadName}
+                        </Badge>
+                      ) : (
+                        <span className="text-muted-foreground text-sm">
+                          No squad
+                        </span>
+                      )}
                     </td>
                     <td className="p-4">
                       <div className="flex items-center gap-2">

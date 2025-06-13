@@ -9,8 +9,8 @@ const config = {
   async redirects() {
     return [
       {
-        source: '/auth/signin',
-        destination: '/login',
+        source: "/auth/signin",
+        destination: "/login",
         permanent: true,
       },
     ];

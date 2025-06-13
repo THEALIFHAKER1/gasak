@@ -17,7 +17,7 @@ const createUserSchema = z.object({
 });
 
 // GET - List all users
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
     const session = await auth();
 
@@ -25,15 +25,55 @@ export async function GET() {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const allUsers = await db
-      .select({
-        id: users.id,
-        name: users.name,
-        email: users.email,
-        role: users.role,
-        ign: users.ign,
-      })
-      .from(users);
+    const { searchParams } = new URL(request.url);
+    const roleFilter = searchParams.get("role") as
+      | "admin"
+      | "leader"
+      | "member"
+      | null;
+    const availableFilter = searchParams.get("available");
+
+    // Import squad tables
+    const { squadMembers, squads } = await import("@/db/schema");
+
+    let allUsers;
+
+    // Get users with squad information using LEFT JOIN
+    if (roleFilter && ["admin", "leader", "member"].includes(roleFilter)) {
+      allUsers = await db
+        .select({
+          id: users.id,
+          name: users.name,
+          email: users.email,
+          role: users.role,
+          ign: users.ign,
+          squadId: squads.id,
+          squadName: squads.name,
+        })
+        .from(users)
+        .leftJoin(squadMembers, eq(users.id, squadMembers.userId))
+        .leftJoin(squads, eq(squadMembers.squadId, squads.id))
+        .where(eq(users.role, roleFilter));
+    } else {
+      allUsers = await db
+        .select({
+          id: users.id,
+          name: users.name,
+          email: users.email,
+          role: users.role,
+          ign: users.ign,
+          squadId: squads.id,
+          squadName: squads.name,
+        })
+        .from(users)
+        .leftJoin(squadMembers, eq(users.id, squadMembers.userId))
+        .leftJoin(squads, eq(squadMembers.squadId, squads.id));
+    }
+
+    // If requesting available users, filter out users already in squads
+    if (availableFilter === "true" && roleFilter === "member") {
+      allUsers = allUsers.filter((user) => !user.squadId);
+    }
 
     return NextResponse.json(allUsers);
   } catch (error) {
