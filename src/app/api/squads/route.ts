@@ -13,13 +13,14 @@ export async function GET(_req: NextRequest) {
     }
 
     let squadsData;
-
     if (userRole === "admin") {
       // Admin can see all squads
       squadsData = await db
         .select({
           id: squads.id,
           name: squads.name,
+          image: squads.image,
+          banner: squads.banner,
           leaderId: squads.leaderId,
           leaderName: users.name,
           leaderIgn: users.ign,
@@ -35,6 +36,8 @@ export async function GET(_req: NextRequest) {
         .select({
           id: squads.id,
           name: squads.name,
+          image: squads.image,
+          banner: squads.banner,
           leaderId: squads.leaderId,
           leaderName: users.name,
           leaderIgn: users.ign,
@@ -50,6 +53,8 @@ export async function GET(_req: NextRequest) {
         .select({
           id: squads.id,
           name: squads.name,
+          image: squads.image,
+          banner: squads.banner,
           leaderId: squads.leaderId,
           leaderName: users.name,
           leaderIgn: users.ign,

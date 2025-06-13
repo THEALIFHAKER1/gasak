@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { LeaderManageMembersDialog } from "./leader-manage-members-dialog";
+import { LeaderSquadImageManager } from "./squad-image-manager";
 import type { Squad, SquadMember } from "@/types";
 import { IconUsers } from "@tabler/icons-react";
 
@@ -63,6 +64,23 @@ export function LeaderSquadManagement() {
 
   const handleMembersUpdated = () => {
     void fetchSquadData();
+  };
+
+  const handleSquadImageUpdate = (
+    squadId: string,
+    field: "image" | "banner",
+    imageUrl: string,
+  ) => {
+    // Optimistic update - update squad image immediately
+    setSquad((prev) => (prev ? { ...prev, [field]: imageUrl } : prev));
+  };
+
+  const handleSquadImageDelete = (
+    squadId: string,
+    field: "image" | "banner",
+  ) => {
+    // Optimistic update - remove squad image immediately
+    setSquad((prev) => (prev ? { ...prev, [field]: null } : prev));
   };
 
   if (loading) {
@@ -135,6 +153,13 @@ export function LeaderSquadManagement() {
           <div className="text-muted-foreground text-sm">Squad Status</div>
         </Card>
       </div>
+
+      {/* Squad Image Management */}
+      <LeaderSquadImageManager
+        squad={squad}
+        onSquadUpdate={handleSquadImageUpdate}
+        onSquadImageDelete={handleSquadImageDelete}
+      />
 
       {/* Members List */}
       <Card>

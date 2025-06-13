@@ -50,6 +50,13 @@
       "when": 1749788065556,
       "tag": "0006_violet_microchip",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1749822952056,
+      "tag": "0007_right_william_stryker",
+      "breakpoints": true
     }
   ]
 }

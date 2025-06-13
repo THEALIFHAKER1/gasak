@@ -4,6 +4,8 @@ export * from "./auth";
 export interface Squad {
   id: string;
   name: string;
+  image?: string | null;
+  banner?: string | null;
   leaderId: string | null;
   leaderName?: string | null;
   leaderIgn?: string | null;

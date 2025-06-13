@@ -21,7 +21,7 @@ export const users = createTable("user", {
   role: roleEnum("role").notNull().default("member"),
   ign: text("ign"), // In-game name
   emailVerified: timestamp("emailVerified", { mode: "date" }),
-  image: text("image"),
+  image: text("image"), // User profile picture
 });
 
 export const sessions = createTable("session", {
@@ -96,6 +96,8 @@ export const kanbanTasks = createTable("kanban_task", {
 export const squads = createTable("squad", {
   id: uuid("id").primaryKey().defaultRandom(),
   name: text("name").notNull(),
+  image: text("image"), // Squad profile picture
+  banner: text("banner"), // Squad banner image
   leaderId: uuid("leader_id").references(() => users.id, {
     onDelete: "set null",
   }),

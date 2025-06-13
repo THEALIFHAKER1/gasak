@@ -12,6 +12,7 @@ import { Badge } from "@/components/ui/badge";
 import { CreateUserDialog } from "@/components/admin/create-user-dialog";
 import { EditUserDialog } from "@/components/admin/edit-user-dialog";
 import { DeleteUserDialog } from "@/components/admin/delete-user-dialog";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { IconPlus, IconSearch, IconEdit, IconTrash } from "@tabler/icons-react";
 
 // Simple toast implementation to avoid TypeScript issues
@@ -52,6 +53,7 @@ interface User {
   email: string;
   role: "admin" | "leader" | "member";
   ign?: string | null;
+  image?: string | null;
   squadName?: string | null;
   squadId?: string | null;
 }
@@ -99,13 +101,13 @@ export default function UsersPage() {
       setLoading(false);
     }
   };
-
   const handleCreateUser = async (userData: {
     name: string;
     email: string;
     password: string;
     role: "admin" | "leader" | "member";
     ign?: string;
+    image?: string | null;
   }) => {
     try {
       const response = await fetch("/api/admin/users", {
@@ -115,6 +117,7 @@ export default function UsersPage() {
       });
 
       if (response.ok) {
+        await response.json();
         toast.success("User created successfully");
         void fetchUsers();
         setShowCreateDialog(false);
@@ -127,7 +130,6 @@ export default function UsersPage() {
       toast.error("Error creating user");
     }
   };
-
   const handleUpdateUser = async (
     userId: string,
     userData: {
@@ -136,6 +138,7 @@ export default function UsersPage() {
       role: "admin" | "leader" | "member";
       password?: string;
       ign?: string;
+      image?: string | null;
     },
   ) => {
     try {
@@ -252,21 +255,40 @@ export default function UsersPage() {
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
+            {" "}
             <table className="w-full">
               <thead>
                 <tr className="border-b">
-                  <th className="p-4 text-left font-medium">Name</th>
+                  <th className="p-4 text-left font-medium">User</th>
                   <th className="p-4 text-left font-medium">Email</th>
                   <th className="p-4 text-left font-medium">IGN</th>
                   <th className="p-4 text-left font-medium">Role</th>
                   <th className="p-4 text-left font-medium">Squad</th>
                   <th className="p-4 text-left font-medium">Actions</th>
                 </tr>
-              </thead>
+              </thead>{" "}
               <tbody>
                 {filteredUsers.map((user) => (
                   <tr key={user.id} className="border-b">
-                    <td className="p-4">{user.name ?? "N/A"}</td>
+                    <td className="p-4">
+                      <div className="flex items-center gap-3">
+                        <Avatar className="h-8 w-8">
+                          <AvatarImage
+                            src={user.image ?? undefined}
+                            alt={user.name ?? "User"}
+                          />
+                          <AvatarFallback>
+                            {user.name?.charAt(0)?.toUpperCase() ?? "U"}
+                          </AvatarFallback>
+                        </Avatar>
+                        <div>
+                          <p className="font-medium">{user.name ?? "N/A"}</p>
+                          <p className="text-muted-foreground text-sm">
+                            {user.email}
+                          </p>
+                        </div>
+                      </div>
+                    </td>
                     <td className="p-4" title={user.email}>
                       {censorEmail(user.email)}
                     </td>

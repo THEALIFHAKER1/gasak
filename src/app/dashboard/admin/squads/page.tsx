@@ -26,6 +26,7 @@ import { CreateSquadDialog } from "@/components/admin/create-squad-dialog";
 import { EditSquadDialog } from "@/components/admin/edit-squad-dialog";
 import { DeleteSquadDialog } from "@/components/admin/delete-squad-dialog";
 import { ManageMembersDialog } from "@/components/admin/manage-members-dialog";
+import { SquadImageUpload } from "@/components/admin/squad-image-upload";
 import { Heading } from "@/components/ui/heading";
 
 export default function AdminSquadsPage() {
@@ -121,13 +122,14 @@ export default function AdminSquadsPage() {
               <TableHead>Leader</TableHead>
               <TableHead>Members</TableHead>
               <TableHead>Created</TableHead>
+              <TableHead>Images</TableHead>
               <TableHead className="text-right">Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {squads.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={5} className="py-8 text-center">
+                <TableCell colSpan={6} className="py-8 text-center">
                   <div className="text-muted-foreground">
                     No squads found. Create your first squad to get started.
                   </div>
@@ -171,6 +173,40 @@ export default function AdminSquadsPage() {
                     </TableCell>
                     <TableCell>
                       {new Date(squad.createdAt).toLocaleDateString()}
+                    </TableCell>
+                    <TableCell>
+                      <SquadImageUpload
+                        squadId={squad.id}
+                        squadName={squad.name}
+                        currentImage={squad.image}
+                        currentBanner={squad.banner}
+                        onImageUpdate={(imageUrl, fieldType) => {
+                          // Optimistic update - update UI immediately
+                          setSquads((prev) =>
+                            prev.map((s) =>
+                              s.id === squad.id
+                                ? {
+                                    ...s,
+                                    [fieldType]: imageUrl,
+                                  }
+                                : s,
+                            ),
+                          );
+                        }}
+                        onImageDelete={(fieldType) => {
+                          // Optimistic update - remove image immediately
+                          setSquads((prev) =>
+                            prev.map((s) =>
+                              s.id === squad.id
+                                ? {
+                                    ...s,
+                                    [fieldType]: null,
+                                  }
+                                : s,
+                            ),
+                          );
+                        }}
+                      />
                     </TableCell>
                     <TableCell className="text-right">
                       <div

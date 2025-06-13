@@ -9,11 +9,13 @@ import { randomUUID } from "crypto";
 
 // Validation schemas
 const createUserSchema = z.object({
+  id: z.string().uuid().optional(),
   name: z.string().min(1, "Name is required"),
   email: z.string().email("Invalid email format"),
   password: z.string().min(6, "Password must be at least 6 characters"),
   role: z.enum(["admin", "leader", "member"]),
   ign: z.string().optional(),
+  image: z.string().nullable().optional(),
 });
 
 // GET - List all users
@@ -36,9 +38,7 @@ export async function GET(request: NextRequest) {
     // Import squad tables
     const { squadMembers, squads } = await import("@/db/schema");
 
-    let allUsers;
-
-    // Get users with squad information using LEFT JOIN
+    let allUsers; // Get users with squad information using LEFT JOIN
     if (roleFilter && ["admin", "leader", "member"].includes(roleFilter)) {
       allUsers = await db
         .select({
@@ -47,6 +47,7 @@ export async function GET(request: NextRequest) {
           email: users.email,
           role: users.role,
           ign: users.ign,
+          image: users.image,
           squadId: squads.id,
           squadName: squads.name,
         })
@@ -62,6 +63,7 @@ export async function GET(request: NextRequest) {
           email: users.email,
           role: users.role,
           ign: users.ign,
+          image: users.image,
           squadId: squads.id,
           squadName: squads.name,
         })
@@ -105,7 +107,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const { name, email, password, role, ign } = validationResult.data;
+    const { id, name, email, password, role, ign, image } =
+      validationResult.data;
 
     // Check if user with email already exists
     const existingUser = await db
@@ -123,15 +126,17 @@ export async function POST(request: NextRequest) {
 
     // Hash password
     const hashedPassword = await hash(password, 12); // Create user
+    const userId = id ?? randomUUID();
     const newUser = await db
       .insert(users)
       .values({
-        id: randomUUID(),
+        id: userId,
         name,
         email,
         password: hashedPassword,
         role,
         ign,
+        image,
       })
       .returning({
         id: users.id,
@@ -139,6 +144,7 @@ export async function POST(request: NextRequest) {
         email: users.email,
         role: users.role,
         ign: users.ign,
+        image: users.image,
       });
 
     return NextResponse.json(newUser[0], { status: 201 });
