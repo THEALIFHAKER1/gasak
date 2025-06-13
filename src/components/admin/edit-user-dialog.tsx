@@ -24,6 +24,7 @@ interface User {
   name: string | null;
   email: string;
   role: "admin" | "leader" | "member";
+  ign?: string | null;
 }
 
 interface EditUserDialogProps {
@@ -37,6 +38,7 @@ interface EditUserDialogProps {
       email: string;
       role: "admin" | "leader" | "member";
       password?: string;
+      ign?: string;
     },
   ) => void;
   isCurrentUser: boolean;
@@ -55,6 +57,7 @@ export function EditUserDialog({
     role: "member" as "admin" | "leader" | "member",
     password: "",
     confirmPassword: "",
+    ign: "",
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [changePassword, setChangePassword] = useState(false);
@@ -67,6 +70,7 @@ export function EditUserDialog({
         role: user.role,
         password: "",
         confirmPassword: "",
+        ign: user.ign ?? "",
       });
       setChangePassword(false);
       setErrors({});
@@ -114,10 +118,12 @@ export function EditUserDialog({
       email: string;
       role: "admin" | "leader" | "member";
       password?: string;
+      ign?: string;
     } = {
       name: formData.name,
       email: formData.email,
       role: formData.role,
+      ign: formData.ign,
     };
 
     if (changePassword && formData.password) {
@@ -178,6 +184,18 @@ export function EditUserDialog({
               {errors.email && (
                 <span className="text-sm text-red-500">{errors.email}</span>
               )}
+            </div>
+
+            <div className="grid gap-2">
+              <label htmlFor="ign" className="text-sm font-medium">
+                In-Game Name (IGN)
+              </label>
+              <Input
+                id="ign"
+                value={formData.ign}
+                onChange={(e) => handleChange("ign", e.target.value)}
+                placeholder="Enter user's in-game name (optional)"
+              />
             </div>
 
             <div className="grid gap-2">

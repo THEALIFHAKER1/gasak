@@ -1,0 +1,1 @@
+ALTER TABLE "gasak_user" ADD COLUMN "ign" text;

@@ -13,6 +13,7 @@ const createUserSchema = z.object({
   email: z.string().email("Invalid email format"),
   password: z.string().min(6, "Password must be at least 6 characters"),
   role: z.enum(["admin", "leader", "member"]),
+  ign: z.string().optional(),
 });
 
 // GET - List all users
@@ -30,6 +31,7 @@ export async function GET() {
         name: users.name,
         email: users.email,
         role: users.role,
+        ign: users.ign,
       })
       .from(users);
 
@@ -63,7 +65,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const { name, email, password, role } = validationResult.data;
+    const { name, email, password, role, ign } = validationResult.data;
 
     // Check if user with email already exists
     const existingUser = await db
@@ -89,12 +91,14 @@ export async function POST(request: NextRequest) {
         email,
         password: hashedPassword,
         role,
+        ign,
       })
       .returning({
         id: users.id,
         name: users.name,
         email: users.email,
         role: users.role,
+        ign: users.ign,
       });
 
     return NextResponse.json(newUser[0], { status: 201 });

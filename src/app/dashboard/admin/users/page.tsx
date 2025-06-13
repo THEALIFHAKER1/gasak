@@ -33,6 +33,7 @@ interface User {
   name: string | null;
   email: string;
   role: "admin" | "leader" | "member";
+  ign?: string | null;
 }
 
 export default function UsersPage() {
@@ -84,6 +85,7 @@ export default function UsersPage() {
     email: string;
     password: string;
     role: "admin" | "leader" | "member";
+    ign?: string;
   }) => {
     try {
       const response = await fetch("/api/admin/users", {
@@ -113,6 +115,7 @@ export default function UsersPage() {
       email: string;
       role: "admin" | "leader" | "member";
       password?: string;
+      ign?: string;
     },
   ) => {
     try {
@@ -234,6 +237,7 @@ export default function UsersPage() {
                 <tr className="border-b">
                   <th className="p-4 text-left font-medium">Name</th>
                   <th className="p-4 text-left font-medium">Email</th>
+                  <th className="p-4 text-left font-medium">IGN</th>
                   <th className="p-4 text-left font-medium">Role</th>
                   <th className="p-4 text-left font-medium">Actions</th>
                 </tr>
@@ -243,6 +247,7 @@ export default function UsersPage() {
                   <tr key={user.id} className="border-b">
                     <td className="p-4">{user.name ?? "N/A"}</td>
                     <td className="p-4">{user.email}</td>
+                    <td className="p-4">{user.ign ?? "Not set"}</td>
                     <td className="p-4">
                       <Badge
                         variant="outline"

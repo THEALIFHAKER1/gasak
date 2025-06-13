@@ -20,6 +20,7 @@ export const users = createTable("user", {
   email: text("email").unique().notNull(),
   password: text("password").notNull(),
   role: roleEnum("role").notNull().default("member"),
+  ign: text("ign"), // In-game name
   emailVerified: timestamp("emailVerified", { mode: "date" }),
   image: text("image"),
 });

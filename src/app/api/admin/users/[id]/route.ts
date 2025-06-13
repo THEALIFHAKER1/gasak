@@ -15,6 +15,7 @@ const updateUserSchema = z.object({
     .string()
     .min(6, "Password must be at least 6 characters")
     .optional(),
+  ign: z.string().optional(),
 });
 
 // PUT - Update user
@@ -40,7 +41,7 @@ export async function PUT(
       );
     }
 
-    const { name, email, role, password } = validationResult.data;
+    const { name, email, role, password, ign } = validationResult.data;
     const { id: userId } = await context.params;
 
     // Check if user exists
@@ -84,10 +85,12 @@ export async function PUT(
       email: string;
       role: "admin" | "leader" | "member";
       password?: string;
+      ign?: string;
     } = {
       name,
       email,
       role,
+      ign,
     };
 
     // Hash password if provided
@@ -105,6 +108,7 @@ export async function PUT(
         name: users.name,
         email: users.email,
         role: users.role,
+        ign: users.ign,
       });
 
     return NextResponse.json(updatedUser[0]);
