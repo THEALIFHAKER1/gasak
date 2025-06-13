@@ -184,7 +184,7 @@ export function CreateUserDialog({
                     <div className="w-full space-y-3">
                       <p className="text-muted-foreground text-sm">
                         Image uploaded
-                      </p>{" "}
+                      </p>
                       <div className="flex flex-col gap-2">
                         <div className="relative">
                           <JpgUploadButton

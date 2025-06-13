@@ -96,7 +96,6 @@ export function TaskCard({ task, isOverlay }: TaskCardProps) {
         dragging: isOverlay ? "overlay" : isDragging ? "over" : undefined,
       })}
     >
-      {" "}
       <CardHeader className="space-between border-secondary relative flex flex-row border-b-2 px-3 py-3">
         <Button
           variant={"ghost"}
@@ -106,7 +105,7 @@ export function TaskCard({ task, isOverlay }: TaskCardProps) {
         >
           <span className="sr-only">Move task</span>
           <IconGripVertical />
-        </Button>{" "}
+        </Button>
         <div className="ml-auto flex items-center gap-1">
           <AlertDialog>
             <AlertDialogTrigger asChild>
@@ -123,7 +122,7 @@ export function TaskCard({ task, isOverlay }: TaskCardProps) {
             </AlertDialogTrigger>
             <AlertDialogContent>
               <AlertDialogHeader>
-                <AlertDialogTitle>Delete Task</AlertDialogTitle>{" "}
+                <AlertDialogTitle>Delete Task</AlertDialogTitle>
                 <AlertDialogDescription>
                   Are you sure you want to delete the task &ldquo;{task.title}
                   &rdquo;? This action cannot be undone.
@@ -145,7 +144,7 @@ export function TaskCard({ task, isOverlay }: TaskCardProps) {
             Task
           </Badge>
         </div>
-      </CardHeader>{" "}
+      </CardHeader>
       <CardContent className="px-3 pt-3 pb-6 text-left whitespace-pre-wrap">
         <div className="space-y-2">
           <div className="font-medium">{task.title}</div>

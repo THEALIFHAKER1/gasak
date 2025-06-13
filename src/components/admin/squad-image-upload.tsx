@@ -183,7 +183,6 @@ export function SquadImageUpload({
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="image">
-                  {" "}
                   <div className="flex items-center gap-2">
                     <ImageIcon className="h-4 w-4" />
                     Profile Picture
@@ -203,7 +202,7 @@ export function SquadImageUpload({
             <div className="flex flex-col items-center space-y-2">
               <label className="text-sm font-medium">
                 Current {selectedField}
-              </label>{" "}
+              </label>
               <div
                 className={`relative overflow-hidden rounded-lg border ${
                   selectedField === "banner"
@@ -221,7 +220,6 @@ export function SquadImageUpload({
             </div>
           )}
           <div className="w-full space-y-2">
-            {" "}
             <JpgUploadButton
               endpoint="squadImage"
               input={{ squadId, fieldType: selectedField }}

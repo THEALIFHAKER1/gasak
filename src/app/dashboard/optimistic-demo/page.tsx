@@ -90,7 +90,7 @@ export default function OptimisticUpdateDemoPage() {
                 <strong>User:</strong> {mockUser.name}
               </p>
               <p>
-                <strong>Status:</strong>{" "}
+                <strong>Status:</strong>
                 {userImage ? "Custom Image Set" : "Default Avatar"}
               </p>
             </div>

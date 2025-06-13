@@ -147,7 +147,6 @@ export function UserAvatarUpload({
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-md">
-        {" "}
         <DialogHeader>
           <DialogTitle>Update User Avatar</DialogTitle>
           <DialogDescription>
@@ -155,7 +154,6 @@ export function UserAvatarUpload({
           </DialogDescription>
         </DialogHeader>
         <div className="flex flex-col items-center space-y-4">
-          {" "}
           <Avatar className="h-20 w-20">
             <AvatarImage
               src={previewImage ?? undefined}
@@ -166,7 +164,6 @@ export function UserAvatarUpload({
             </AvatarFallback>
           </Avatar>
           <div className="w-full space-y-2">
-            {" "}
             <JpgUploadButton
               endpoint="userAvatar"
               input={{ targetUserId: userId }}

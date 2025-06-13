@@ -187,7 +187,6 @@ export function ManageMembersDialog({
                       className="flex items-center justify-between rounded-md border p-3"
                     >
                       <div>
-                        {" "}
                         <div className="font-medium">
                           {member.userName ?? "Unnamed User"}
                         </div>
@@ -197,7 +196,7 @@ export function ManageMembersDialog({
                           </div>
                         )}
                         <div className="text-muted-foreground text-xs">
-                          Joined:{" "}
+                          Joined:
                           {new Date(member.joinedAt).toLocaleDateString()}
                         </div>
                       </div>

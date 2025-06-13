@@ -106,7 +106,6 @@ export default function HomePage() {
     <div className="min-h-dvh bg-gray-900">
       <header className="border-b border-yellow-500/20 bg-gray-800 shadow-lg">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          {" "}
           <div className="flex h-16 items-center justify-between">
             <div className="flex items-center space-x-3">
               <div className="h-12 w-12 overflow-hidden rounded-lg bg-gray-700">

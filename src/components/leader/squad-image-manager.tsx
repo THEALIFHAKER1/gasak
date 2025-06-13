@@ -150,7 +150,7 @@ export function LeaderSquadImageManager({
               <p className="text-muted-foreground text-sm">
                 Update your squad&apos;s profile picture or banner
               </p>
-            </div>{" "}
+            </div>
             <SquadImageUpload
               squadId={squad.id}
               squadName={squad.name}

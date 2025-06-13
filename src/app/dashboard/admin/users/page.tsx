@@ -255,7 +255,6 @@ export default function UsersPage() {
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
-            {" "}
             <table className="w-full">
               <thead>
                 <tr className="border-b">
@@ -266,7 +265,7 @@ export default function UsersPage() {
                   <th className="p-4 text-left font-medium">Squad</th>
                   <th className="p-4 text-left font-medium">Actions</th>
                 </tr>
-              </thead>{" "}
+              </thead>
               <tbody>
                 {filteredUsers.map((user) => (
                   <tr key={user.id} className="border-b">

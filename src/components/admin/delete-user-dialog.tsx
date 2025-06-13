@@ -55,7 +55,7 @@ export function DeleteUserDialog({
                 <span className="font-medium">Email:</span> {user.email}
               </div>
               <div>
-                <span className="font-medium">Role:</span>{" "}
+                <span className="font-medium">Role:</span>
                 <span className="capitalize">{user.role}</span>
               </div>
             </div>

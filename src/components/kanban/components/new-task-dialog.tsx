@@ -98,7 +98,7 @@ export default function NewTaskDialog() {
             <Select value={assignedToId} onValueChange={setAssignedToId}>
               <SelectTrigger>
                 <SelectValue placeholder="Select a user..." />
-              </SelectTrigger>{" "}
+              </SelectTrigger>
               <SelectContent>
                 <SelectItem value="unassigned">Unassigned</SelectItem>
                 {users.map((user) => (

@@ -39,7 +39,6 @@ export function SignInForm() {
 
   return (
     <div className="flex h-full items-center justify-center p-4 lg:p-8">
-      {" "}
       <div className="flex w-full max-w-md flex-col items-center justify-center space-y-6">
         <div className="w-full space-y-6">
           <div className="space-y-2 text-center">
@@ -102,7 +101,7 @@ export function SignInForm() {
               size="lg"
             >
               {isLoading ? "Signing in..." : "Sign In"}
-            </Button>{" "}
+            </Button>
           </form>
         </div>
       </div>

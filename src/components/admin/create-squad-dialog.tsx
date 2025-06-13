@@ -135,7 +135,7 @@ export function CreateSquadDialog({
             >
               <SelectTrigger>
                 <SelectValue placeholder="Select a leader" />
-              </SelectTrigger>{" "}
+              </SelectTrigger>
               <SelectContent>
                 <SelectItem value="no-leader">No Leader</SelectItem>
                 {leaders.map((leader) => (

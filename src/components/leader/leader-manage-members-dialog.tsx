@@ -202,7 +202,7 @@ export function LeaderManageMembersDialog({
                           </div>
                         )}
                         <div className="text-muted-foreground text-xs">
-                          Joined:{" "}
+                          Joined:
                           {new Date(member.joinedAt).toLocaleDateString()}
                         </div>
                       </div>

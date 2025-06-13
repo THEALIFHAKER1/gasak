@@ -268,7 +268,7 @@ export default function AdminSquadsPage() {
                                     )}
                                   </div>
                                   <div className="text-muted-foreground text-xs">
-                                    Joined{" "}
+                                    Joined
                                     {new Date(
                                       member.joinedAt,
                                     ).toLocaleDateString()}
@@ -281,7 +281,7 @@ export default function AdminSquadsPage() {
                               No members in this squad yet.
                             </div>
                           )}
-                        </div>{" "}
+                        </div>
                       </TableCell>
                     </TableRow>
                   )}
