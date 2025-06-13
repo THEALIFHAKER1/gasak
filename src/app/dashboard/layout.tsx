@@ -10,7 +10,7 @@ export default async function DashboardLayout({
 
   // If not authenticated, redirect to sign in
   if (!session) {
-    redirect("/auth/signin");
+    redirect("/login");
   }
 
   return <>{children}</>;

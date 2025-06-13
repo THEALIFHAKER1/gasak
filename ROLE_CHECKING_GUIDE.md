@@ -24,7 +24,7 @@ export default async function AdminPage() {
   const session = await auth();
 
   if (!session?.user) {
-    redirect("/auth/signin");
+    redirect("/login");
   }
 
   if (session.user.role !== "admin") {
@@ -45,7 +45,7 @@ export default async function LeaderPage() {
     const session = await requireAuthWithRole(["admin", "leader"]);
     return <div>Leadership content for {session.user.name}</div>;
   } catch {
-    redirect("/auth/signin");
+    redirect("/login");
   }
 }
 ```
@@ -231,6 +231,6 @@ try {
   await requireAuthWithRole(["admin"]);
   // Admin logic here
 } catch (error) {
-  redirect("/auth/signin");
+  redirect("/login");
 }
 ```

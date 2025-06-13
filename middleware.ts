@@ -5,15 +5,13 @@ import { getToken } from "next-auth/jwt";
 export async function middleware(request: NextRequest) {
   const token = await getToken({ req: request });
   const { pathname } = request.nextUrl;
-
   // Allow public routes
-  if (pathname === "/" || pathname.startsWith("/auth/")) {
+  if (pathname === "/" || pathname.startsWith("/auth/") || pathname === "/login") {
     return NextResponse.next();
   }
-
   // Redirect to login if not authenticated
   if (!token) {
-    const url = new URL("/auth/signin", request.url);
+    const url = new URL("/login", request.url);
     url.searchParams.set("callbackUrl", request.url);
     return NextResponse.redirect(url);
   }
@@ -22,28 +20,25 @@ export async function middleware(request: NextRequest) {
 
   // Check role-based access for dashboard routes
   if (pathname.startsWith("/dashboard/admin")) {
-    if (userRole !== "admin") {
-      // Redirect to appropriate dashboard based on role
+    if (userRole !== "admin") {      // Redirect to appropriate dashboard based on role
       if (userRole === "leader") {
         return NextResponse.redirect(new URL("/dashboard/leader", request.url));
       } else if (userRole === "member") {
         return NextResponse.redirect(new URL("/dashboard/member", request.url));
       } else {
-        return NextResponse.redirect(new URL("/auth/signin", request.url));
+        return NextResponse.redirect(new URL("/login", request.url));
       }
     }
   } else if (pathname.startsWith("/dashboard/leader")) {
-    if (!["admin", "leader"].includes(userRole)) {
-      // Redirect to appropriate dashboard based on role
+    if (!["admin", "leader"].includes(userRole)) {      // Redirect to appropriate dashboard based on role
       if (userRole === "member") {
         return NextResponse.redirect(new URL("/dashboard/member", request.url));
       } else {
-        return NextResponse.redirect(new URL("/auth/signin", request.url));
+        return NextResponse.redirect(new URL("/login", request.url));
       }
-    }
-  } else if (pathname.startsWith("/dashboard/member")) {
+    }  } else if (pathname.startsWith("/dashboard/member")) {
     if (!["admin", "leader", "member"].includes(userRole)) {
-      return NextResponse.redirect(new URL("/auth/signin", request.url));
+      return NextResponse.redirect(new URL("/login", request.url));
     }
   }
 

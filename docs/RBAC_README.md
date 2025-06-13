@@ -84,13 +84,13 @@ After running the seed scripts, use these credentials to test different roles:
 
 ### Route Protection
 
-| Route Prefix   | Access Roles          |
-| -------------- | --------------------- |
-| `/admin/*`     | admin only            |
-| `/leader/*`    | admin, leader         |
-| `/member/*`    | admin, leader, member |
-| `/`            | Public                |
-| `/auth/signin` | All users             |
+| Route Prefix | Access Roles          |
+| ------------ | --------------------- |
+| `/admin/*`   | admin only            |
+| `/leader/*`  | admin, leader         |
+| `/member/*`  | admin, leader, member |
+| `/`          | Public                |
+| `/login`     | All users             |
 
 ### Role Capabilities
 
@@ -152,7 +152,7 @@ src/
 │   ├── admin/          # Admin dashboard
 │   ├── leader/         # Leader dashboard
 │   ├── member/         # Member dashboard
-│   ├── auth/signin/    # Login page
+│   ├── login/          # Login page
 │   └── api/auth/       # NextAuth API routes
 ├── auth/               # Authentication configuration
 ├── components/         # React components

@@ -7,7 +7,7 @@ export default async function DashboardPage() {
 
   // If not authenticated, redirect to sign in
   if (!session) {
-    redirect("/auth/signin");
+    redirect("/login");
   }
 
   // If authenticated, redirect to role-specific dashboard

@@ -14,7 +14,7 @@ export default async function SecurePage() {
       </div>
     );
   } catch (error) {
-    redirect("/auth/signin");
+    redirect("/login");
   }
 }
 
@@ -33,7 +33,7 @@ export async function ConditionalContent() {
   const userRole = await getUserRole();
 
   if (!userRole) {
-    redirect("/auth/signin");
+    redirect("/login");
   }
 
   return (

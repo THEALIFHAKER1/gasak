@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { AuthSlideshow, SignInForm } from "@/components/auth";
 
-export default function SignInPage() {
+export default function LoginPage() {
   return (
     <div className="relative min-h-dvh flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
       <Link

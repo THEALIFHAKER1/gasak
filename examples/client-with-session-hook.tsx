@@ -12,7 +12,7 @@ export default function ClientComponentWithHook() {
     if (status === "loading") return; // Still loading
 
     if (!session) {
-      router.push("/auth/signin");
+      router.push("/login");
       return;
     }
 

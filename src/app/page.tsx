@@ -136,7 +136,7 @@ export default function HomePage() {
                 News
               </Link>
               <Link
-                href="/auth/signin"
+                href="/login"
                 className="rounded-md bg-gradient-to-r from-yellow-500 to-orange-500 px-4 py-2 text-sm font-medium text-gray-900 hover:from-yellow-400 hover:to-orange-400 transition-all duration-200"
               >
                 Login

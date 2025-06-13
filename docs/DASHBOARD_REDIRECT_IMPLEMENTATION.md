@@ -1,25 +1,30 @@
 # Dashboard Redirect Implementation Summary
 
 ## Overview
+
 Successfully implemented automatic role-based dashboard redirects for the GASAK application. Users are now automatically redirected to their appropriate dashboard based on their role when accessing the main `/dashboard` route.
 
 ## Changes Made
 
 ### 1. Main Dashboard Route (`/src/app/dashboard/page.tsx`)
+
 - Created a server-side component that automatically redirects users to role-specific dashboards
 - Redirects unauthenticated users to the sign-in page
 - Handles role-based routing: admin → `/dashboard/admin`, leader → `/dashboard/leader`, member → `/dashboard/member`
 
 ### 2. Dashboard Layout (`/src/app/dashboard/layout.tsx`)
+
 - Added authentication protection for all dashboard routes
 - Ensures users must be logged in to access any dashboard page
 
 ### 3. Middleware Updates (`middleware.ts`)
+
 - Enhanced role-based access control for dashboard routes
 - Redirects users to appropriate dashboards if they try to access unauthorized role areas
 - Maintains backward compatibility with legacy routes
 
 ### 4. Authentication Updates
+
 - **Auth Config (`/src/auth/config.ts`)**:
   - Added redirect callback to automatically send users to `/dashboard` after login
 - **Sign-in Form (`/src/components/auth/sign-in-form.tsx`)**:
@@ -27,6 +32,7 @@ Successfully implemented automatic role-based dashboard redirects for the GASAK 
   - Simplified redirect logic
 
 ### 5. Navigation Updates
+
 - **Main Page (`/src/app/page.tsx`)**:
   - Updated dashboard links to use new `/dashboard/*` routes
 - **App Sidebar (`/src/components/layout/app-sidebar.tsx`)**:
@@ -34,6 +40,7 @@ Successfully implemented automatic role-based dashboard redirects for the GASAK 
   - Role-specific navigation now points to `/dashboard/{role}/*` routes
 
 ### 6. Utility Functions (`/src/utils/dashboard.ts`)
+
 - Created helper functions for dashboard URL generation
 - Role validation and path checking utilities
 - Access control helpers
@@ -41,13 +48,15 @@ Successfully implemented automatic role-based dashboard redirects for the GASAK 
 ## Route Structure
 
 ### Before:
+
 ```
 /admin → Admin Dashboard
-/leader → Leader Dashboard  
+/leader → Leader Dashboard
 /member → Member Dashboard
 ```
 
 ### After:
+
 ```
 /dashboard → Auto-redirects based on user role
 /dashboard/admin → Admin Dashboard
@@ -58,10 +67,12 @@ Successfully implemented automatic role-based dashboard redirects for the GASAK 
 ## User Experience Flow
 
 1. **Unauthenticated User**:
-   - Accesses `/dashboard` → Redirected to `/auth/signin`
+
+   - Accesses `/dashboard` → Redirected to `/login`
    - After login → Redirected to `/dashboard` → Auto-redirected to role-specific dashboard
 
 2. **Authenticated User**:
+
    - Accesses `/dashboard` → Auto-redirected to their role-specific dashboard
    - Accesses wrong role dashboard → Redirected to their appropriate dashboard via middleware
 
@@ -79,6 +90,7 @@ Successfully implemented automatic role-based dashboard redirects for the GASAK 
 ## Files to Clean Up
 
 The following old page files contain TypeScript errors and should be reviewed/removed:
+
 - `/src/app/dashboard/admin/page-old.tsx`
 - `/src/app/dashboard/leader/page-old.tsx`
 - `/src/app/dashboard/member/page-old.tsx`

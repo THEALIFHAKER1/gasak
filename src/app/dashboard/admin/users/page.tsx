@@ -68,7 +68,7 @@ export default function UsersPage() {
     if (status === "loading") return;
 
     if (!session) {
-      router.push("/auth/signin");
+      router.push("/login");
       return;
     }
 

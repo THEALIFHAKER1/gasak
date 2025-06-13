@@ -6,7 +6,7 @@ export default async function AdminOnlyPage() {
 
   // Check if user is authenticated
   if (!session?.user) {
-    redirect("/auth/signin");
+    redirect("/login");
   }
 
   // Check if user has admin role
