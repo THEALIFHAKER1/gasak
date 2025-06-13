@@ -12,6 +12,7 @@ import type { AdapterAccount } from "next-auth/adapters";
 export const createTable = pgTableCreator((name) => `gasak_${name}`);
 
 export const roleEnum = pgEnum("role", ["admin", "leader", "member"]);
+export const statusEnum = pgEnum("status", ["TODO", "IN_PROGRESS", "DONE"]);
 
 export const users = createTable("user", {
   id: uuid("id").primaryKey().defaultRandom(),
@@ -62,3 +63,53 @@ export const verificationTokens = createTable(
   },
   (vt) => [primaryKey({ columns: [vt.identifier, vt.token] })],
 );
+
+// Kanban Board table
+export const kanbanBoards = createTable("kanban_board", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  title: text("title").notNull(),
+  userId: uuid("userId")
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade" }),
+  createdAt: timestamp("createdAt", { mode: "date" }).defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt", { mode: "date" }).defaultNow().notNull(),
+});
+
+// Kanban Columns table
+export const kanbanColumns = createTable("kanban_column", {
+  id: text("id").primaryKey(), // Using text for compatibility with existing frontend
+  title: text("title").notNull(),
+  color: text("color").default("#6b7280"), // Default to gray color
+  boardId: uuid("boardId")
+    .notNull()
+    .references(() => kanbanBoards.id, { onDelete: "cascade" }),
+  order: integer("order").notNull().default(0),
+  createdAt: timestamp("createdAt", { mode: "date" }).defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt", { mode: "date" }).defaultNow().notNull(),
+});
+
+// Kanban Tasks table
+export const kanbanTasks = createTable("kanban_task", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  title: text("title").notNull(),
+  description: text("description"),
+  status: text("status").notNull(), // Using text instead of enum for flexibility
+  columnId: text("columnId")
+    .notNull()
+    .references(() => kanbanColumns.id, { onDelete: "cascade" }),
+  boardId: uuid("boardId")
+    .notNull()
+    .references(() => kanbanBoards.id, { onDelete: "cascade" }),
+  createdById: uuid("createdById")
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade" }),
+  assignedToId: uuid("assignedToId").references(() => users.id, {
+    onDelete: "set null",
+  }),
+  userId: uuid("userId")
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade" }), // Keep for backward compatibility
+  order: integer("order").notNull().default(0),
+  createdAt: timestamp("createdAt", { mode: "date" }).defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt", { mode: "date" }).defaultNow().notNull(),
+});

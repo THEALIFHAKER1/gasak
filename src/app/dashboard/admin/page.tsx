@@ -62,7 +62,7 @@ export default function AdminPage() {
       <Separator />
 
       {/* Management Sections */}
-      <div className="space-y-6">
+      {/* <div className="space-y-6">
         <Heading
           title="Management Center"
           description="Administer users, teams, and tournaments"
@@ -154,7 +154,7 @@ export default function AdminPage() {
             ]}
           />
         </div>
-      </div>
+      </div> */}
     </PageContainer>
   );
 }

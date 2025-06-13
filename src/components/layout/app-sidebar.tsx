@@ -21,16 +21,17 @@ import {
 import {
   IconDashboard,
   IconUsers,
-  IconTournament,
-  IconChartBar,
-  IconSettings,
+  // IconTournament,
+  // IconChartBar,
+  // IconSettings,
   IconShield,
   IconUser,
-  IconCalendar,
-  IconTrophy,
-  IconTarget,
+  // IconCalendar,
+  // IconTrophy,
+  // IconTarget,
   IconLogout,
   IconHome,
+  IconColumns,
 } from "@tabler/icons-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -61,25 +62,30 @@ export default function AppSidebar() {
       return [
         ...baseItems,
         {
+          title: "Kanban Board",
+          url: "/dashboard/admin/kanban",
+          icon: IconColumns,
+        },
+        {
           title: "User Management",
           url: "/dashboard/admin/users",
           icon: IconUsers,
         },
-        {
-          title: "Tournament Control",
-          url: "/dashboard/admin/tournaments",
-          icon: IconTournament,
-        },
-        {
-          title: "Analytics",
-          url: "/dashboard/admin/analytics",
-          icon: IconChartBar,
-        },
-        {
-          title: "System Settings",
-          url: "/dashboard/admin/settings",
-          icon: IconSettings,
-        },
+        // {
+        //   title: "Tournament Control",
+        //   url: "/dashboard/admin/tournaments",
+        //   icon: IconTournament,
+        // },
+        // {
+        //   title: "Analytics",
+        //   url: "/dashboard/admin/analytics",
+        //   icon: IconChartBar,
+        // },
+        // {
+        //   title: "System Settings",
+        //   url: "/dashboard/admin/settings",
+        //   icon: IconSettings,
+        // },
       ];
     }
 
@@ -87,25 +93,30 @@ export default function AppSidebar() {
       return [
         ...baseItems,
         {
-          title: "Team Members",
-          url: "/dashboard/leader/members",
-          icon: IconUsers,
+          title: "Kanban Board",
+          url: "/dashboard/leader/kanban",
+          icon: IconColumns,
         },
-        {
-          title: "Training Schedule",
-          url: "/dashboard/leader/training",
-          icon: IconCalendar,
-        },
-        {
-          title: "Team Performance",
-          url: "/dashboard/leader/performance",
-          icon: IconChartBar,
-        },
-        {
-          title: "Tournaments",
-          url: "/dashboard/leader/tournaments",
-          icon: IconTrophy,
-        },
+        // {
+        //   title: "Team Members",
+        //   url: "/dashboard/leader/members",
+        //   icon: IconUsers,
+        // },
+        // {
+        //   title: "Training Schedule",
+        //   url: "/dashboard/leader/training",
+        //   icon: IconCalendar,
+        // },
+        // {
+        //   title: "Team Performance",
+        //   url: "/dashboard/leader/performance",
+        //   icon: IconChartBar,
+        // },
+        // {
+        //   title: "Tournaments",
+        //   url: "/dashboard/leader/tournaments",
+        //   icon: IconTrophy,
+        // },
       ];
     }
 
@@ -113,25 +124,30 @@ export default function AppSidebar() {
       return [
         ...baseItems,
         {
-          title: "Training Schedule",
-          url: "/dashboard/member/training",
-          icon: IconCalendar,
+          title: "Kanban Board",
+          url: "/dashboard/member/kanban",
+          icon: IconColumns,
         },
-        {
-          title: "My Performance",
-          url: "/dashboard/member/performance",
-          icon: IconChartBar,
-        },
-        {
-          title: "Tournaments",
-          url: "/dashboard/member/tournaments",
-          icon: IconTrophy,
-        },
-        {
-          title: "Personal Goals",
-          url: "/dashboard/member/goals",
-          icon: IconTarget,
-        },
+        // {
+        //   title: "Training Schedule",
+        //   url: "/dashboard/member/training",
+        //   icon: IconCalendar,
+        // },
+        // {
+        //   title: "My Performance",
+        //   url: "/dashboard/member/performance",
+        //   icon: IconChartBar,
+        // },
+        // {
+        //   title: "Tournaments",
+        //   url: "/dashboard/member/tournaments",
+        //   icon: IconTrophy,
+        // },
+        // {
+        //   title: "Personal Goals",
+        //   url: "/dashboard/member/goals",
+        //   icon: IconTarget,
+        // },
       ];
     }
 

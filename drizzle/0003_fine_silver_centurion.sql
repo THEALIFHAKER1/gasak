@@ -1,0 +1,1 @@
+ALTER TABLE "gasak_kanban_column" ADD COLUMN "color" text DEFAULT '#6b7280';

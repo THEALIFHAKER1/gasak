@@ -1,0 +1,4 @@
+ALTER TABLE "gasak_kanban_task" ADD COLUMN "createdById" uuid NOT NULL;--> statement-breakpoint
+ALTER TABLE "gasak_kanban_task" ADD COLUMN "assignedToId" uuid;--> statement-breakpoint
+ALTER TABLE "gasak_kanban_task" ADD CONSTRAINT "gasak_kanban_task_createdById_gasak_user_id_fk" FOREIGN KEY ("createdById") REFERENCES "public"."gasak_user"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "gasak_kanban_task" ADD CONSTRAINT "gasak_kanban_task_assignedToId_gasak_user_id_fk" FOREIGN KEY ("assignedToId") REFERENCES "public"."gasak_user"("id") ON DELETE set null ON UPDATE no action;
