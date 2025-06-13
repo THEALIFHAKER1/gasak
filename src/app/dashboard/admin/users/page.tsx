@@ -28,6 +28,24 @@ const toast = {
   },
 };
 
+// Utility function to censor email addresses
+const censorEmail = (email: string): string => {
+  const [localPart, domain] = email.split("@");
+  if (!localPart || !domain) return email;
+
+  const localLength = localPart.length;
+  if (localLength <= 2) {
+    // For very short emails, show first character + ***
+    return `${localPart[0]}***@${domain}`;
+  } else if (localLength <= 4) {
+    // For short emails, show first and last character + ***
+    return `${localPart[0]}***${localPart[localLength - 1]}@${domain}`;
+  } else {
+    // For longer emails, show first 2 and last 1 character + ***
+    return `${localPart.slice(0, 2)}***${localPart[localLength - 1]}@${domain}`;
+  }
+};
+
 interface User {
   id: string;
   name: string | null;
@@ -246,7 +264,9 @@ export default function UsersPage() {
                 {filteredUsers.map((user) => (
                   <tr key={user.id} className="border-b">
                     <td className="p-4">{user.name ?? "N/A"}</td>
-                    <td className="p-4">{user.email}</td>
+                    <td className="p-4" title={user.email}>
+                      {censorEmail(user.email)}
+                    </td>
                     <td className="p-4">{user.ign ?? "Not set"}</td>
                     <td className="p-4">
                       <Badge
